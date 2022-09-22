@@ -1,5 +1,5 @@
 # _This code is provided for example purposes only_
-_This is a small project I implemented in 2017 to compare the implementations of a simple service in various languages._
+_This is a small (unfinished) project I implemented in 2017 to compare the implementations of a simple service in various languages._
 _Details are provided below of the functionality that was to be implemented under a fictional premise._
 _(Yes, I should have used Kafka.  I had specific reasons at the time I wanted to test without Kafka)_
 
