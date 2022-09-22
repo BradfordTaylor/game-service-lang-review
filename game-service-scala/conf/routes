@@ -1,0 +1,13 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.PersonController.index
+->      /api/v1/arcade/states/room                       v1.state.StateRouter
+
+POST    /person                     controllers.PersonController.addPerson
+GET     /persons                    controllers.PersonController.getPersons
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

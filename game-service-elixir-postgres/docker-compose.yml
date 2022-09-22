@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      MIX_ENV: "test"
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+  db-adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+

@@ -1,0 +1,43 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  game_service_api:
+    build: .
+    ports:
+      - "4000:4000"
+    depends_on:
+      - game_service_db
+      - game_service_rabbit
+    links:
+      - game_service_db
+      - game_service_rabbit
+
+  game_service_db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      PGOSTGRES_PASSWORD: postgres
+
+  game_service_adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  game_service_rabbit:
+    image: rabbitmq:3-websocket
+    hostname: "rabbit1"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "15674:15674"
+    labels:
+      NAME: "rabbitmq1"

@@ -1,0 +1,39 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  game_service_api:
+    build: .
+    #command: bash -c "RAILS_ENV=test bundle exec rails db:create && RAILS_ENV=test bundle exec rails db:migrate && bundle exec rails s -p 4000 -b '0.0.0.0' -e test"
+    ports:
+      - "4000:4000"
+    depends_on:
+      - game_service_db
+    links:
+      - game_service_db
+  game_service_db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      PGOSTGRES_PASSWORD: postgres
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  rabbit1:
+    image: rabbitmq:3-websocket
+    hostname: "rabbit1"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "15674:15674"
+    labels:
+      NAME: "rabbitmq1"

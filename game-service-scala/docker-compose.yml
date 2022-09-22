@@ -1,0 +1,27 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  game_service_api:
+    image: fd6fa9aa2c75
+#    build: .
+#    command: bash -c "RAILS_ENV=production bundle exec rails db:create && RAILS_ENV=production bundle exec rails db:migrate && bundle exec rails s -p 4000 -b '0.0.0.0' -e production"
+    ports:
+      - "4000:4000"
+    depends_on:
+      - game_service_db
+    links:
+      - game_service_db
+  game_service_db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      PGOSTGRES_PASSWORD: postgres
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

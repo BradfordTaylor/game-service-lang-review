@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  api:
+    build: .
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      MIX_ENV: "test"
+  db:
+    image: rethinkdb:2.3
+    volumes:
+      - db:/data
+    ports:
+      - "28015:28015"
+      - "8080:8080"
+
+volumes:
+  db: {}

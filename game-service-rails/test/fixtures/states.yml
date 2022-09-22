@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  available_game_types: MyString
+  bay: 1
+  passive: false
+  current_game_type: MyString
+  current_game_state: MyString
+
+two:
+  available_game_types: MyString
+  bay: 1
+  passive: false
+  current_game_type: MyString
+  current_game_state: MyString

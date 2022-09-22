@@ -1,0 +1,5 @@
+name = Name
+age = Age
+
+user.created = You have successfully created a user!
+state.created = You have successfully created a state!

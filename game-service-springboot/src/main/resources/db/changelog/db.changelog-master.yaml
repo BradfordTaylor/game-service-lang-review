@@ -1,0 +1,5 @@
+databaseChangeLog:
+    - include:
+        file: db/changelog/changes/v0001.sql
+#    - includeAll:
+#        path: db/changelog/changes/
